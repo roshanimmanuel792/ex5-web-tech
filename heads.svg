@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 140">
+  <circle cx="70" cy="70" r="66" fill="#f1c24c" stroke="#c99a26" stroke-width="5"/>
+  <circle cx="70" cy="70" r="54" fill="none" stroke="#c99a26" stroke-width="1.5" stroke-dasharray="3 4"/>
+  <circle cx="70" cy="62" r="17" fill="#ffffff"/>
+  <g stroke="#ffffff" stroke-width="5" stroke-linecap="round">
+    <line x1="70" y1="31" x2="70" y2="37"/><line x1="70" y1="87" x2="70" y2="93"/>
+    <line x1="39" y1="62" x2="45" y2="62"/><line x1="95" y1="62" x2="101" y2="62"/>
+  </g>
+  <text x="70" y="113" font-family="Arial" font-size="13" font-weight="bold" fill="#7a5a0c" text-anchor="middle">Day shift</text>
+</svg>

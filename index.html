@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CarePlus Hospital - Front Desk Tools</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<main class="main">
+
+  <header class="top">
+    <div class="brand">
+      <img src="logo.svg" alt="">
+      <span>CarePlus<small>Hospital Management</small></span>
+    </div>
+    <h1>Front desk tools</h1>
+    <p>Quick tools for reception and ward staff: read notes, check BMI, plan beds, convert bills and book checkups.</p>
+  </header>
+
+  <!-- 1. Shortest and longest word -->
+  <section class="tool" id="notes">
+    <div class="tool-info">
+      <h2>Patient note word finder</h2>
+      <p>Type a line from a doctor's note to find its shortest and longest word.</p>
+    </div>
+    <div class="tool-body">
+      <label for="text">Doctor's note</label>
+      <div class="inline">
+        <input type="text" id="text" value="Web Development Tutorial">
+        <button class="btn" onclick="findWords();">Find words</button>
+      </div>
+      <div class="readout">
+        <div><small>Shortest</small><span id="shortest">&ndash;</span></div>
+        <div><small>Longest</small><span id="longest">&ndash;</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. BMI calculator -->
+  <section class="tool" id="bmi">
+    <div class="tool-info">
+      <h2>Calculate your Body Mass Index (BMI)!</h2>
+      <p>Recorded at registration. BMI is weight divided by height squared.</p>
+      <table class="chart">
+        <tr><th>Body type</th><th>BMI</th></tr>
+        <tr id="row-Underweight"><td>Underweight</td><td>below 18</td></tr>
+        <tr id="row-Normal"><td>Normal</td><td>18 &ndash; 25</td></tr>
+        <tr id="row-Overweight"><td>Overweight</td><td>25 &ndash; 30</td></tr>
+        <tr id="row-Obese"><td>Obese</td><td>above 30</td></tr>
+      </table>
+    </div>
+    <div class="tool-body">
+      <div class="grid-2">
+        <div><label for="weight">Weight (in kilograms)</label><input type="text" id="weight" placeholder="68"></div>
+        <div><label for="height">Height (in meters)</label><input type="text" id="height" placeholder="1.72"></div>
+      </div>
+      <button class="btn" onclick="calculate();">Get BMI!</button>
+      <div class="readout">
+        <div><small>Your BMI is</small><span id="score">&ndash;</span></div>
+        <div><small>Your body type is</small><span id="type">&ndash;</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Ward bed planner (Fruit Farm) -->
+  <section class="tool" id="ward">
+    <div class="tool-info">
+      <h2>Ward bed planner</h2>
+      <p>Lay out a ward of rows and columns. Each bed is randomly shown as occupied or vacant.</p>
+      <p class="legend"><span class="dot occupied"></span>Occupied <span class="dot vacant"></span>Vacant</p>
+    </div>
+    <div class="tool-body">
+      <div class="grid-3">
+        <div><label for="rows">Rows</label><input type="text" id="rows" placeholder="2"></div>
+        <div><label for="columns">Columns</label><input type="text" id="columns" placeholder="5"></div>
+        <button class="btn" onclick="grow();">Plan ward</button>
+      </div>
+      <div id="garden"><p class="empty">Enter rows and columns, then plan the ward.</p></div>
+    </div>
+  </section>
+
+  <!-- 4. Currency converter -->
+  <section class="tool" id="converter">
+    <div class="tool-info">
+      <h2>Medical bill converter</h2>
+      <p>Convert a bill between rupees and dollars for overseas patients.</p>
+      <p class="rates">1 rupee = $0.015<br>1 dollar = Rs.67.12</p>
+    </div>
+    <div class="tool-body">
+      <label for="data">Amount</label>
+      <input type="text" id="data" placeholder="1000">
+      <div class="grid-2">
+        <div>
+          <label for="from">From</label>
+          <select id="from">
+            <option value="INR">Indian Rupee</option>
+            <option value="USD">US Dollar</option>
+          </select>
+        </div>
+        <div>
+          <label for="to">To</label>
+          <select id="to">
+            <option value="USD">US Dollar</option>
+            <option value="INR">Indian Rupee</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn" onclick="convert();">Calculate</button>
+      <div class="readout">
+        <div><small>Converted amount</small><span id="answer">&ndash;</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Coin flip -->
+  <section class="tool" id="shift">
+    <div class="tool-info">
+      <h2>Shift toss</h2>
+      <p>Can't decide who takes which shift? Flip the coin. Heads is the day shift, tails is the night shift.</p>
+    </div>
+    <div class="tool-body coin-body">
+      <div class="coin-box">
+        <img src="heads.svg" id="coin" alt="Coin showing the last toss">
+        <button class="btn" id="flip">Flip!</button>
+      </div>
+      <div class="readout stacked">
+        <div><small>Heads total (day)</small><span id="num_heads">0</span></div>
+        <div><small>Tails total (night)</small><span id="num_tails">0</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Order form -->
+  <section class="tool" id="booking">
+    <div class="tool-info">
+      <h2>Health checkup booking</h2>
+      <p>Basic Rs.100, Standard Rs.200 and Premium Rs.400. 9% tax is added, then a service charge on the taxed total.</p>
+    </div>
+    <div class="tool-body">
+      <div class="grid-3">
+        <div><label for="small">Basic</label><input type="text" id="small" placeholder="0"></div>
+        <div><label for="medium">Standard</label><input type="text" id="medium" placeholder="0"></div>
+        <div><label for="large">Premium</label><input type="text" id="large" placeholder="0"></div>
+      </div>
+      <p class="label">Service charge</p>
+      <div class="segment">
+        <label><input type="radio" value="10" name="tip"><span>10%</span></label>
+        <label><input type="radio" value="15" name="tip" checked="checked"><span>15%</span></label>
+        <label><input type="radio" value="20" name="tip"><span>20%</span></label>
+      </div>
+      <button class="btn" id="submit">Calculate Order</button>
+      <div class="readout">
+        <div><small>Cost of order</small><span id="price">&ndash;</span><em id="details"></em></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">CarePlus Hospital, Hospital Management System</footer>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
